@@ -1,0 +1,20 @@
+class Solution {
+  public:
+    pair<long long, long long> getMinMax(vector<long long int> arr) {
+        int n = arr.size();
+        long long mn = 1e18, mx = -1;
+
+        // Iterating over the array
+        for (int i = 0; i < n; i++) {
+
+            // Updating the minimum value
+            mn = min(arr[i], mn);
+
+            // Updating the maximum value
+            mx = max(arr[i], mx);
+        }
+
+        // Returning the minimum and maximum values as a pair
+        return {mn, mx};
+    }
+};
