@@ -1,0 +1,42 @@
+Given a string s without spaces, a character ch and an integer count. Your task is to return the substring that remains after the character ch has appeared count number of times.
+Note:  Assume upper case and lower case alphabets are different. “”(Empty string) should be returned if it is not possible, or the remaining substring is empty.
+
+Examples:
+
+Input: s = "Thisisdemostring", ch = 'i', count = 3
+Output: ng
+Explanation: The remaining substring of s after the 3rd
+occurrence of 'i' is "ng", hence the output is ng.
+
+
+class Solution {
+  public:
+
+    string printString(string s, char ch, int count) {
+        // Your code goes here
+        int occ = 0, i;
+
+        // Start traversing the string
+        for (i = 0; i < s.size(); i++) {
+
+            // Increment occ if current char is equal
+            // to given character
+            if (s[i] == ch)
+                occ++;
+
+            // Break the loop if given character has
+            // been occurred given no. of times
+            if (occ == count)
+                break;
+        }
+
+        // Print the string after the occurrence
+        // of given character given no. of times
+        if (i < s.length() - 1)
+            return s.substr(i + 1, s.length() - (i + 1));
+
+        // Otherwise string is empty
+        else
+            return "";
+    }
+};
