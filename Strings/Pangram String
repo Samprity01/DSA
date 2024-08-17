@@ -1,0 +1,40 @@
+class Solution{
+public:	
+	
+	int isPanagram(string S)
+	{
+	    
+	    vector<bool> mark(26, false);
+
+	    // For indexing in mark[]
+	    int index;
+
+	    // Traverse all characters
+	    for (int i=0; i<S.size(); i++)
+	    {
+	        // If uppercase character, subtract 'A'
+	        // to find index.
+	        if ('A' <= S[i] && S[i] <= 'Z')
+	            index = S[i] - 'A';
+
+	        // If lowercase character, subtract 'a'
+	        // to find index.
+	        else if('a' <= S[i] && S[i] <= 'z')
+	            index = S[i] - 'a';
+
+	        // Mark current character
+	        mark[index] = true;
+	    }
+
+	    // Return false if any character is unmarked
+	    for (int i=0; i<=25; i++)
+	        if (mark[i] == false)
+	            return 0;
+
+	    // If all characters were present
+	    return 1;
+	}
+
+
+   
+};
