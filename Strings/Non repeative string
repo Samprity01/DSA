@@ -1,0 +1,22 @@
+// ABA
+op-0
+
+
+class Solution
+{
+  public:
+  bool nonRepetitive(string S)
+   {int a[26]={0};
+    for(int i=0;i<S.length();i++){
+        if(a[S[i]-'A'])
+            {if(S[i]!=S[i-1])
+                return 0;
+             else
+                a[S[i]-'A']++;
+            }
+        else
+          a[S[i]-'A']++;
+    }
+   return 1; 
+   }
+};
