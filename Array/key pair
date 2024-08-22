@@ -1,0 +1,39 @@
+Given an array arr of positive integers and another number x. Determine whether two elements exist in arr whose sum is exactly x or not. Return a boolean value true if two elements exist in arr else return false.
+
+Examples:
+
+Input: x = 16, arr[] = [1, 4, 45, 6, 10, 8]
+Output: true
+Explanation: arr[3] + arr[4] = 6 + 10 = 16
+
+
+
+
+class Solution {
+  public:
+    // Function to check if array has 2 elements
+    // whose sum is equal to the given value
+    bool hasArrayTwoCandidates(vector<int>& arr, int x) {
+        int n=arr.size();
+        int l=0;
+        int h=n-1;
+        sort(arr.begin(),arr.end());
+        
+        while(l<h)
+        {
+            int csum=arr[l]+arr[h];
+            if(csum==x)
+            {
+                return true;
+            }
+            else if(csum<x){
+                l++;
+            }
+            else{
+                h--;
+            }
+    
+        }
+        return false;
+    }
+};
