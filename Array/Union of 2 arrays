@@ -1,0 +1,13 @@
+class Solution {
+  public:
+    // Function to return the count of number of elements in union of two arrays.
+    int doUnion(vector<int> arr1, vector<int> arr2) {
+        // code here
+        unordered_set<int> arr(arr1.begin(),arr1.end());
+        for(int num:arr2){
+            arr.insert(num);
+        }
+        
+        return arr.size();
+    }
+};
