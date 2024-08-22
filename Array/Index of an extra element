@@ -1,0 +1,21 @@
+You have given two sorted arrays arr1[] & arr2[] of distinct elements. The first array has one element extra added in between. Return the index of the extra element.
+
+Note: 0-based indexing is followed.
+
+
+
+
+class Solution {
+  public:
+    int findExtra(int n, int arr1[], int arr2[]) {
+        // add code here.
+        
+        for(int i=0;i<n;i++){
+            if(arr1[i]!=arr2[i]){
+                return i;
+            }
+        }
+        return -1;
+        
+    }
+};
