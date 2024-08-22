@@ -1,0 +1,54 @@
+class Solution {
+  public:
+    // Function to find common elements in three arrays.
+    vector<int> commonElements(vector<int> &arr1, vector<int> &arr2,
+                               vector<int> &arr3) {
+        // Code Here
+        
+        vector<int> ans;
+        map<int,int> mp;
+        set<int> s1;
+        set<int> s2;
+        set<int> s3;
+        
+        int n1=arr1.size();
+        int n2=arr2.size();
+        int n3=arr3.size();
+        
+        if(arr1[n1-1]<arr2[0] && arr1[n1-1]<arr3[0]){
+            return{-1};
+            
+        }
+        
+        for(int i=0;i<n1;i++){
+            s1.insert(arr1[i]);
+        }
+        
+        for(int i=0;i<n2;i++){
+            s2.insert(arr2[i]);
+        }
+        
+        for(int i=0;i<n3;i++){
+            s3.insert(arr3[i]);
+        }
+        
+        for(int i:s1){
+            mp[i]++;
+        }
+        
+     for(int i:s2){
+            mp[i]++;
+        }
+        for(int i:s3){
+            mp[i]++;
+        }
+        for(auto i:mp){
+            if(i.second>=3){
+               ans.push_back(i.first); 
+               
+            }
+           
+        }
+        return ans;
+    }
+};
