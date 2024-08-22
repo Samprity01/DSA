@@ -1,0 +1,33 @@
+Factorials of large numbers
+Difficulty: MediumAccuracy: 36.57%Submissions: 146K+Points: 4
+Given an integer N, find its factorial. return a list of integers denoting the digits that make up the factorial of N.
+
+Example 1:
+
+Input: N = 5
+Output: [1,2,0]
+Explanation : 5! = 1*2*3*4*5 = 120
+
+
+
+class Solution {
+public:
+vector<int> factorial(int N){
+        vector<int> ans(1,1);
+        while(N > 1){
+            int carry = 0, res, size = ans.size();
+            for(int i = 0; i<size; i++){
+                res = ans[i]*N+carry;
+                carry = res/10;
+                ans[i] = res%10;
+            }
+            while (carry){
+                ans.push_back(carry%10);
+                carry /=10;
+            }
+            N--;
+        }
+        reverse(ans.begin(), ans.end());
+        return ans;
+    }
+};
