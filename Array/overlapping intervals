@@ -1,0 +1,24 @@
+vector<vector<int>> overlappedInterval(vector<vector<int>>& intervals) {
+         // Code here
+         vector<vector<int>> ans;
+         
+         sort(intervals.begin(), intervals.end());
+         
+         int f=intervals[0][0], l=intervals[0][1];
+         
+         for(int i=1; i<intervals.size(); i++){
+             int cf=intervals[i][0];
+             int cl=intervals[i][1];
+             
+             if(cf>l){
+                 ans.push_back(vector<int>{f, l});
+                 f=cf, l=cl;
+             } else if(cf<l && cl<=l) continue;
+             else if(cf<=l && cl>l){
+                  l=cl;
+             }
+         }
+         ans.push_back(vector<int>{f, l});
+         
+         return ans;
+    }
