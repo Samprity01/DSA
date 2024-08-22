@@ -1,0 +1,36 @@
+Maximum Product Subarray
+Difficulty: MediumAccuracy: 18.09%Submissions: 371K+Points: 4
+Given an array arr[] that contains n integers (may be positive, negative or zero). Find the product of the maximum product subarray.
+
+Note: It is guarenteed that the output fits in 64-bit integer.
+
+Examples
+
+Input: arr[] = {6, -3, -10, 0, 2}, n = 5
+Output: 180
+Explanation:  The subarray [6, -3, -10] gives max product as 180.
+
+
+
+
+
+class Solution{
+public:
+
+	// Function to find maximum product subarray
+	long long maxProduct(vector<int> arr, int n) {
+	    // code here
+	    long long maxi=INT_MIN;
+	    for(int i=0;i<n;i++){
+	        long long mul=1;
+	        for(int j=i;j<n;j++){
+	            mul*=arr[j];
+	            maxi=max(mul,maxi);
+	            if(mul==0)
+	               break;
+	        }
+	    }
+	    
+	    return maxi;
+	}
+};
