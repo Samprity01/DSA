@@ -1,0 +1,65 @@
+Input:
+N = 5
+A = {1 2 3 4 5}
+Output: 
+1 1 1 1 1
+Explanation: 
+After pushing elements to the stack, 
+the stack will be "top -> 5, 4, 3, 2, 1". 
+Now, start popping elements from the stack
+popping 5: min in the stack is 1.popped 5
+popping 4: min in the stack is 1. popped 4
+popping 3: min in the stack is 1. popped 3
+popping 2: min in the stack is 1. popped 2
+popping 1: min in the stack is 1. popped 1
+
+
+
+
+
+
+stack<int> _push(int arr[],int n)
+{
+   // your code here
+   stack<int> ans;
+   if(n==0)
+     return ans;
+   
+   for(int i=0;i<n;i++){
+       ans.push(arr[i]);
+   }
+   return ans;
+   
+}
+
+//Function to print minimum value in stack each time while popping.
+
+int findmin(stack<int> &s){
+    if(s.size()==0)
+      return -1;
+      
+    int mini=INT_MAX;
+    stack<int> temp=s;
+    
+    while(!temp.empty()){
+        int top=temp.top();
+        temp.pop();
+        if(top<mini){
+            mini=top;
+        }
+    }
+    return mini;
+}
+
+void _getMinAtPop(stack<int>s)
+{
+    // your code here
+    if(s.empty())
+      return;
+      
+    while(!s.empty()){
+        int mini=findmin(s);
+        s.pop();
+        cout<<mini<<" ";
+    }
+}
