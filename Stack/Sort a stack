@@ -1,0 +1,26 @@
+Sort a stack
+Difficulty: MediumAccuracy: 69.19%Submissions: 121K+Points: 4
+Given a stack, the task is to sort it such that the top of the stack has the greatest element.
+
+Example 1:
+
+Input:
+Stack: 3 2 1
+Output: 3 2 1
+
+
+void SortedStack :: sort()
+{
+   //Your code here
+    priority_queue<int,vector<int>,greater<int>>p;
+   while(!s.empty()){
+      p.push(s.top());
+       s.pop();
+   }
+   
+   while(!p.empty()){
+       s.push(p.top());
+       p.pop();
+   }
+   
+}
