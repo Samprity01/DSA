@@ -1,0 +1,14 @@
+void solve(stacj<int>& s, int x){
+   if(s.empty()){
+      s.push(x);
+      return;
+}
+  int num=s.top();
+  s.pop();
+  solve(stack,x);
+  s.push(num);
+}
+stack<int> pushatbottom(stack<int>& s, int x){
+solve(mystack,x);
+return mystack;
+}
