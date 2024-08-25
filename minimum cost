@@ -1,0 +1,91 @@
+You are given two integer arrays a and b, each of length n. You have to make the two arrays identical (a should be a permutation of b) by performing a series of swap operations between their elements.
+
+Choose an index i (1 ≤ i ≤ n) from array a and index j (1 ≤ j ≤ n) from array b.
+Swap ai and bj with the cost as min(ai , bj).
+Your task is to minimize the total cost of all swaps needed to make the arrays identical. If it is impossible to make the arrays identical, return -1.
+
+Example 1:
+
+Input: 
+n = 4
+a = [1, 2, 2, 2]
+b = [1, 2, 4, 4] 
+Output: 2
+Explanation: 
+To make a and b identical, swap the element a4 = 2 with the element b4 = 4. 
+The cost of this swap is min(2, 4) = 2. After the swap, a becomes [1, 2, 2, 4] and b becomes [1, 2, 4, 2], making the arrays identical with a total cost of 2.
+
+
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+
+using namespace std;
+
+class Solution {
+  public:
+    long long minCost(int n, vector<int> &a, vector<int> &b) {
+        map<int, int> freqA, freqB;
+        map<int, int> combinedFreq;
+        
+        // Count frequencies in both arrays
+        for (int i = 0; i < n; i++) {
+            freqA[a[i]]++;
+            freqB[b[i]]++;
+            combinedFreq[a[i]]++;
+            combinedFreq[b[i]]++;
+        }
+        
+        // Check if it is possible to make arrays identical
+        for (auto &entry : combinedFreq) {
+            if (entry.second % 2 != 0) {
+                return -1;
+            }
+        }
+        
+        vector<int> excessA, excessB;
+        
+        // Find excess elements in A and B
+        for (auto &entry : combinedFreq) {
+            int elem = entry.first;
+            int totalNeeded = entry.second / 2;
+            
+            if (freqA[elem] > totalNeeded) {
+                for (int i = 0; i < freqA[elem] - totalNeeded; i++) {
+                    excessA.push_back(elem);
+                }
+            }
+            
+            if (freqB[elem] > totalNeeded) {
+                for (int i = 0; i < freqB[elem] - totalNeeded; i++) {
+                    excessB.push_back(elem);
+                }
+            }
+        }
+        
+        // Sort excess elements to minimize swap cost
+        sort(excessA.begin(), excessA.end());
+        sort(excessB.begin(), excessB.end(), greater<int>());
+        
+        // Calculate the minimum cost
+        long long cost = 0;
+        for (int i = 0; i < excessA.size(); i++) {
+            cost += min(excessA[i], excessB[i]);
+        }
+        
+        return cost;
+    }
+};
+
+int main() {
+    Solution solution;
+    int n = 4;
+    vector<int> a = {1, 2, 2, 2};
+    vector<int> b = {1, 2, 4, 4};
+
+    long long result = solution.minCost(n, a, b);
+    cout << "Minimum cost: " << result << endl;
+
+    return 0;
+}
