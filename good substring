@@ -1,0 +1,44 @@
+You are given a string S consisting of digits ('0'-'9') of length N. A substring is defined as a contiguous sequence of characters within the string. Your task is to count the total number of good substrings within S, following these conditions:
+
+A substring must be a valid decimal number (no leading zeroes in substring).
+The decimal number must be odd.
+Example 1:
+
+Input: S = "1234"
+Output: 4
+Explanation: There are 4 odd substrings: "1", "3", "23", "123".
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class Solution {
+  public:
+    long long cntGood(string S) {
+        long long count = 0;
+        int n = S.size();
+        
+        for (int i = 0; i < n; i++) {
+            if ((S[i] - '0') % 2 == 1) { // Check if the digit is odd
+                count += (i + 1); // Count all substrings ending at index i
+            }
+        }
+        
+        return count;
+    }
+};
+
+int main() {
+    Solution solution;
+    string S = "1234";
+    long long result = solution.cntGood(S);
+    cout << "Total number of good substrings: " << result << endl;
+
+    return 0;
+}
