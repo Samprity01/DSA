@@ -1,0 +1,34 @@
+Delete nodes having greater value on right
+Difficulty: EasyAccuracy: 35.51%Submissions: 140K+Points: 2
+Given a singly linked list, remove all the nodes with any node on their right whose value is greater and return the head of the modified linked list.  (Not just the immediate Right, but the entire List on the Right)
+
+Examples:
+
+Input:
+LinkedList = 12->15->10->11->5->6->2->3
+Output: 15->11->6->3
+
+Explanation: Since, 12, 10, 5 and 2 are the elements which have greater elements on the following nodes. So, after deleting them, the linked list would like be 15, 11, 6, 3.
+
+
+
+class Solution {
+  public:
+    Node *compute(Node *head) {
+        // your code goes here
+          if(head->next==NULL){
+            return head;
+        }
+        Node* connect=compute(head->next);
+        
+        if(head->data>=connect->data){
+            head->next=connect;
+            return head;
+        }
+        
+        return connect;
+      
+    }
+    
+
+};
